@@ -4,7 +4,8 @@ import java.util.Arrays;
 
 public class Segregate0sAnd1s {
 	public static void main(String[] args) {
-		int [] arr = segregatge(new int [] {1,1,0,1,0,1,0,1,0});
+//		int [] arr = segregatge(new int [] {1,1,0,1,0,1,0,1,0});
+		int [] arr = segregatgeUsingInnerLoop(new int [] {1,1,0,1,0,1,0,1,0});
 		System.out.println(Arrays.toString(arr));
 	}
 
@@ -31,5 +32,22 @@ public class Segregate0sAnd1s {
 	private static void swap(int[] a, int i, int j) {
 		a[i]=0;
 		a[j]=1;
+	}
+	
+	private static int[] segregatgeUsingInnerLoop(int[] a) {
+		int i=0, j=a.length-1;
+		while (i<j) {
+			while (a[i]==0) {
+				i++;
+			}
+			while (a[j]==1) {
+				j--;
+			}
+			if(i<j) {
+				swap(a, i, j);
+				i++;j--;
+			}
+		}
+		return a;
 	}
 }
