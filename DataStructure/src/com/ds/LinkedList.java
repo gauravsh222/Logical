@@ -1,100 +1,114 @@
 package com.ds;
 
-public class LinkedList {
+public class LinkedList<T> {
 
-	private class Node {
-		Node next;
-		Object data;
-		
-		public Node(Object data) {
-			this.data=data;
-		}
+	private Node<T> head;
+
+	public Node<T> getHead() {
+		return head;
 	}
-	
-	
-	private Node head;
-	
+
 	public boolean isEmpty() {
-		if(head == null) {
+		if (head == null) {
 			return true;
 		}
 		return false;
 	}
-	
-	public void addFront(Object data) {
-		Node newNode = new Node(data);
-		if(isEmpty()) {
+
+	public void addFront(T data) {
+		Node<T> newNode = new Node<T>(data);
+		if (isEmpty()) {
 			head = newNode;
-		}
-		else {
-			newNode.next=head;
-			head=newNode;
+		} else {
+			newNode.setNext(head);
+			head = newNode;
 		}
 	}
-	
-	public void addBack(Object data) {
-		Node newNode = new Node(data);
-		if(isEmpty()) {
+
+	public void addBack(T data) {
+		Node<T> newNode = new Node<T>(data);
+		if (isEmpty()) {
 			head = newNode;
-		}
-		else {
-			Node curr = head;
-			while (curr.next != null) {
-				curr = curr.next;
+		} else {
+			Node<T> curr = head;
+			while (curr.getNext() != null) {
+				curr = curr.getNext();
 			}
-			newNode.next=curr.next;
-			curr.next=newNode;
+			newNode.setNext(curr.getNext());
+			curr.setNext(newNode);
 		}
 	}
-	
+
 	public void clear() {
-		head=null;
-	}
-	
-	public Object removeFirst() {
-		Node curr=head;
-		head = head.next;
-		return curr;
+		head = null;
 	}
 
-	public Object removeLast() {
-		Node curr=head;
-		while (curr.next.next != null) {
-			curr = curr.next;
+	public T removeFirst() {
+		Node<T> curr = head;
+		head = head.getNext();
+		return curr.getData();
+	}
+
+	public T removeLast() {
+		Node<T> curr = head;
+		while (curr.getNext().getNext() != null) {
+			curr = curr.getNext();
 		}
-		curr.next = curr.next.next;
-		return curr;
+		curr.setNext(curr.getNext().getNext());
+		return curr.getData();
 	}
 
-	
 	public Object removeElement(Object data) {
-		Node curr = head;
-		Node prev = head;
-		if(head.data.equals(data)) {
-			head = head.next;
+		Node<T> curr = head;
+		Node<T> prev = head;
+		if (head.getData().equals(data)) {
+			head = head.getNext();
 			return curr;
 		} else {
-			curr = curr.next;
-			while (! curr.data.equals(data)) {
-				curr = curr.next;
-				prev = prev.next;
+			curr = curr.getNext();
+			while (!curr.getData().equals(data)) {
+				curr = curr.getNext();
+				prev = prev.getNext();
 			}
-			prev.next = curr.next;
+			prev.setNext(curr.getNext());
 			return curr;
 		}
+	}
+
+	public void reverse() {
+		Node<T> curr = head;
+		Node<T> next = null;
+		Node<T> prev = null;
+		
+		while (curr != null) {
+			next=curr.getNext();
+			curr.setNext(prev);
+			prev=curr;
+			curr=next;
+		}
+		head=prev;
+	}
+
+	public int length() {
+		Node<T> curr = head;
+		int len=0;
+		while (curr != null) {
+			curr = curr.getNext();
+			len++;
+		}
+		return len;
 	}
 	
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		Node curr = head;
-		while (curr.next != null) {
-			sb.append(curr.data).append("-->");
-			curr=curr.next;
+		Node<T> curr = head;
+		while (curr.getNext() != null) {
+			sb.append(curr.getData()).append("-->");
+			curr = curr.getNext();
 		}
-		sb.append(curr.data);
+		sb.append(curr.getData());
 		return sb.toString();
 	}
 
 }
-
