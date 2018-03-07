@@ -15,7 +15,6 @@ class MyRunnable implements Runnable {
 			System.out.println("MyRunnable : " + Thread.currentThread().getName() + " : " + i);
 		}
 	}
-	
 }
 
 
