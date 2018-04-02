@@ -3,7 +3,7 @@ package com.ds;
 import java.io.IOException;
 import java.util.Arrays;
 
-public class StandarInputOutput {
+public class CharacterCountInString {
 	public static void main(String[] args) throws IOException {
 		String str = "2245647865";
 		int [] arr = new int[10];
