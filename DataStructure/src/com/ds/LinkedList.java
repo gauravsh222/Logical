@@ -103,11 +103,11 @@ public class LinkedList<T> {
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		Node<T> curr = head;
-		while (curr.getNext() != null) {
+		while (curr != null) {
 			sb.append(curr.getData()).append("-->");
 			curr = curr.getNext();
 		}
-		sb.append(curr.getData());
+		sb.append("null");
 		return sb.toString();
 	}
 
