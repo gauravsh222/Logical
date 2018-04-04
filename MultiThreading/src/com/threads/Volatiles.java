@@ -8,6 +8,7 @@ class MyRunnable implements Runnable {
 	public MyRunnable(CountDownLatch latch) {
 		this.latch=latch;
 	}
+	
 	@Override
 	public void run() {
 		for (int i = 0; i < 10; i++) {
