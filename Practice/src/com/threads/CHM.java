@@ -27,9 +27,7 @@ class CHMRead implements Runnable {
 		}
 		
 		System.out.println("read Wokeup");
-		boolean b;
-		while (b=it.hasNext()) {
-			System.out.println(b);
+		while (it.hasNext()) {
 			Entry<String, Integer> next = it.next();
 			System.out.println("Read : " + next.getKey() + " : " + next.getValue());
 		}
@@ -54,30 +52,46 @@ class CHMWrite implements Runnable {
 			e.printStackTrace();
 		}
 		System.out.println("Write Wokeup");
-		map.put("ABC", 2);
-		map.put("XYZ", 2);
-		System.out.println("Write A : " + map.get("XYZ"));
-		System.out.println("Write B : " + map.get("ABC"));
-		map.remove("ABC");
-		map.remove("XYZ");
-		System.out.println("Write A : " + map.get("XYZ"));
-		System.out.println("Write B : " + map.get("ABC"));
-		map.put("ABC", 5);
-		map.put("XYZ", 5);
-		System.out.println("Write A : " + map.get("XYZ"));
-		System.out.println("Write B : " + map.get("ABC"));
+		map.put("z", 2);
+		map.put("T", 2);
+		map.put("c", 2);
+		map.put("d", 2);
+		System.out.println("Write z : " + map.get("z"));
+		System.out.println("Write T : " + map.get("T"));
+		System.out.println("Write c : " + map.get("c"));
+		System.out.println("Write d : " + map.get("d"));
+		
+		map.remove("z");
+		map.remove("T");
+		map.remove("c");
+		map.remove("d");
+		System.out.println("Write z : " + map.get("z"));
+		System.out.println("Write T : " + map.get("T"));
+		System.out.println("Write c : " + map.get("c"));
+		System.out.println("Write c : " + map.get("d"));
+		
+		map.put("z", 5);
+		map.put("T", 5);
+		map.put("c", 5);
+		map.put("d", 5);
+		System.out.println("Write z : " + map.get("z"));
+		System.out.println("Write T : " + map.get("T"));
+		System.out.println("Write c : " + map.get("c"));
+		System.out.println("Write d : " + map.get("d"));
 	}
 }
 
 public class CHM {
-	Map<String, Integer> map ;
+//	Map<String, Integer> map ;
 	public static void main(String[] args) {
 		CHM c = new CHM();
-		c.map = new ConcurrentHashMap<String, Integer>();
-		c.map.put("ABC", 1);
-		c.map.put("XYZ", 1);
-		Thread t1 = new Thread(new CHMRead(c.map), "Read");
-		Thread t2 = new Thread(new CHMWrite(c.map), "Write");
+		Map<String, Integer> map = new ConcurrentHashMap<String, Integer>();
+		map.put("T", 1);
+		map.put("d", 1);
+		map.put("c", 1);
+		map.put("z", 1);
+		Thread t1 = new Thread(new CHMRead(map), "Read");
+		Thread t2 = new Thread(new CHMWrite(map), "Write");
 		t1.start();
 		t2.start();
 	}
