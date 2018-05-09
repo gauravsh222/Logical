@@ -82,9 +82,7 @@ class CHMWrite implements Runnable {
 }
 
 public class CHM {
-//	Map<String, Integer> map ;
 	public static void main(String[] args) {
-		CHM c = new CHM();
 		Map<String, Integer> map = new ConcurrentHashMap<String, Integer>();
 		map.put("T", 1);
 		map.put("d", 1);
